@@ -1,0 +1,87 @@
+/* Mobile responsiveness overrides.
+   The site's layout is built entirely from inline styles with no existing
+   classes, so these rules use !important plus attribute selectors that match
+   the literal inline style strings to override them at narrow widths,
+   instead of rewriting every page's markup. */
+
+@media (max-width: 768px) {
+  header, footer, section, .topbar {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  [style*="padding: 56px 48px"],
+  [style*="padding: 72px 48px"],
+  [style*="padding: 64px 48px"],
+  [style*="padding: 68px 48px"],
+  [style*="padding: 76px 48px"] {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  .topbar {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    text-align: center !important;
+    gap: 8px !important;
+  }
+
+  header {
+    flex-wrap: wrap !important;
+    row-gap: 14px !important;
+  }
+
+  header a[href="index.html"] span {
+    font-size: 15px !important;
+  }
+
+  nav {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 10px 16px !important;
+  }
+
+  h1 { font-size: 34px !important; line-height: 1.1 !important; }
+  h2 { font-size: 26px !important; }
+  h3 { font-size: 19px !important; }
+
+  /* Collapse multi-column layouts to a single column */
+  [style*="grid-template-columns: repeat(4, 1fr)"],
+  [style*="grid-template-columns: repeat(3, 1fr)"],
+  [style*="grid-template-columns: 1.3fr 1fr 1fr 1fr"],
+  [style*="grid-template-columns: 1fr 1fr"],
+  [style*="grid-template-columns: 1fr 1.05fr"],
+  [style*="grid-template-columns: 1.05fr 1fr"],
+  [style*="grid-template-columns: 1fr 2fr"],
+  [style*="grid-template-columns: 1.5fr 1fr"],
+  [style*="grid-template-columns: 56px 1.1fr 1.4fr 130px"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Label/value spec rows: narrow the label column instead of stacking */
+  [style*="grid-template-columns: 110px 1fr"],
+  [style*="grid-template-columns: 150px 1fr"],
+  [style*="grid-template-columns: 170px 1fr"] {
+    grid-template-columns: 90px 1fr !important;
+  }
+
+  .article table {
+    font-size: 13px !important;
+  }
+  .article th, .article td {
+    padding: 8px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 { font-size: 28px !important; }
+  h2 { font-size: 22px !important; }
+
+  header a[href="index.html"] span {
+    font-size: 13px !important;
+  }
+  header a[href="index.html"] img {
+    width: 36px !important;
+    height: 36px !important;
+  }
+}
