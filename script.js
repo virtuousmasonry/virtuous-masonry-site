@@ -40,9 +40,23 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       const btn = form.querySelector('button[type="submit"]');
       const thanks = form.querySelector('.form-thanks');
-      if (btn) btn.textContent = btn.getAttribute('data-sent-label') || 'Sent';
-      if (thanks) thanks.style.display = 'block';
-      if (typeof fbq === 'function') { fbq('track', 'Lead'); }
+      const originalLabel = btn ? btn.textContent : null;
+      if (btn) { btn.disabled = true; btn.textContent = 'Sending...'; }
+      const formData = new FormData(form);
+      fetch('https://formspree.io/f/xkjnlpja', {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      }).then((response) => {
+        if (!response.ok) throw new Error('Form submission failed');
+        if (btn) btn.textContent = btn.getAttribute('data-sent-label') || 'Sent';
+        if (thanks) thanks.style.display = 'block';
+        if (typeof fbq === 'function') { fbq('track', 'Lead'); }
+        form.reset();
+      }).catch(() => {
+        if (btn) { btn.disabled = false; btn.textContent = originalLabel; }
+        alert('Something went wrong sending your request. Please call (703) 659-5310 or text us directly.');
+      });
     });
   });
 });
