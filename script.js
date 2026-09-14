@@ -34,6 +34,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Phone number taps (tel: links) - track as a Contact event
+  document.querySelectorAll('a[href^="tel:"]').forEach((link) => {
+    link.addEventListener('click', () => {
+      if (typeof fbq === 'function') { fbq('track', 'Contact'); }
+    });
+  });
+
   // Estimate / contact form submit
   document.querySelectorAll('form[data-estimate-form]').forEach((form) => {
     form.addEventListener('submit', (e) => {
