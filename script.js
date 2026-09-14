@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const thanks = form.querySelector('.form-thanks');
       if (btn) btn.textContent = btn.getAttribute('data-sent-label') || 'Sent';
       if (thanks) thanks.style.display = 'block';
+      if (typeof fbq === 'function') { fbq('track', 'Lead'); }
     });
   });
 });
